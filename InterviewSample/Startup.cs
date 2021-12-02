@@ -1,15 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using InterviewSample.ApiIntegration.Services;
+using InterviewSample.ApiIntegration.Services.Api;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 
 namespace InterviewSample
@@ -31,6 +26,9 @@ namespace InterviewSample
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "InterviewSample", Version = "v1" });
             });
+
+            services.AddSingleton<ICountryApi, CountryApi>();
+            services.AddSingleton<ICountryService, CountryService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
